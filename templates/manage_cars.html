@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Cars</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        header a:hover {
+            background-color: #555;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            padding: 5px 10px;
+            font-size: 14px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        input[type="number"] {
+            padding: 5px;
+            font-size: 14px;
+            width: 60px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
+            th, td {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 12px;
+            }
+
+            th, td {
+                font-size: 12px;
+                padding: 6px;
+            }
+
+            input[type="number"] {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Include the header -->
+    {% include 'header.html' %}
+
+    <div class="container">
+        <h1>Manage Cars</h1>
+
+        <!-- Table to display and edit cars -->
+        <form action="{{ url_for('manage_cars') }}" method="post">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Car #</th>
+                        <th>Competitor</th>
+			<th>Car</th>
+			<th>Thur</th>
+			<th>Fri</th>
+			<th>Sat/Sun</th>
+			<th>Driver Booked</th>
+                        <th>Car Booked</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for car in cars %}
+                        <tr>
+                            <td>{{ car['car_id'] }}</td>
+                            <td>{{ car['car_number'] }}</td>
+                            <td>{{ car['Competitor'] }}</td>
+			    <td>{{ car['Make'] }}-{{ car['Model'] }}
+			    <td>{{ car['TFSS'] }}</td>
+                            <td>{{ car['TFREG'] }}</td>
+                            <td>{{ car['SSREG'] }}</td>
+
+                            <td>
+                                <input 
+                                    type="number" 
+                                    name="driverbooked_{{ car['car_id'] }}" 
+                                    value="{{ car['driverbooked'] }}" 
+                                    min="0" 
+                                    max="1">
+                            </td>
+                            <td>
+                                <input 
+                                    type="number" 
+                                    name="carbooked_{{ car['car_id'] }}" 
+                                    value="{{ car['carbooked'] }}" 
+                                    min="0" 
+                                    max="1">
+                            </td>
+                            <td>
+                                <button type="submit" name="car_id" value="{{ car['car_id'] }}">
+                                    Update
+                                </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
+

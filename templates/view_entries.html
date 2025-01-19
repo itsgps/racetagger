@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View All Entries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        header a:hover {
+            background-color: #555;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
+            th, td {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 12px;
+            }
+
+            th, td {
+                font-size: 12px;
+                padding: 6px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Include the header -->
+    {% include 'header.html' %}
+
+    <div class="container">
+        <h1>All Entries</h1>
+
+        {% if entries %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Entry ID</th>
+			<th>Day</th>
+                        <th>Timestamp</th>
+                        <th>Drone</th>
+                        <th>Car Number</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in entries %}
+                        <tr>
+                            <td>{{ entry['entry_id'] }}</td>
+                            <td>{{ entry['day'] }}</td>
+			    <td>{{ entry['timestamp'] }}</td>
+                            <td>{{ entry['drone_name'] }}</td>
+                            <td>{{ entry['car_number'] }}</td>
+                            <td>{{ entry['notes'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No entries found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+

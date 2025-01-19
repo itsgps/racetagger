@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Day</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Day</h1>
+        <form action="{{ url_for('set_day') }}" method="post">
+            <label for="day">Choose the day:</label>
+            <select id="day" name="day" required>
+                <option value="thur">thursday</option>
+                <option value="fri">Friday</option>
+                <option value="sat">saturday</option>
+                <option value="sun">sunday</option>
+            </select>
+            <br><br>
+            <button type="submit">Set Day</button>
+        </form>
+    </div>
+</body>
+</html>
+

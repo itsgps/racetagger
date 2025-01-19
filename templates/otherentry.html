@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Footage Entries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        header a:hover {
+            background-color: #555;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .form-container {
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-size: 16px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
+            input, select, textarea {
+                font-size: 14px;
+            }
+
+            button {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 12px;
+            }
+
+            input, select, textarea {
+                font-size: 12px;
+            }
+
+            button {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Include the header -->
+    {% include 'header.html' %}
+
+    <div class="container">
+        <h1>Driver Footage Entries</h1>
+
+        <!-- Display car buttons and entry counts -->
+        <div class="form-container">
+            <form action="{{ url_for('otherentry') }}" method="post">
+                
+                <!-- Select Drone -->
+                <label for="drone_id">Select Camera:</label>
+                <select id="drone_id" name="drone_id" required>
+                    {% for drone in drones %}
+                        <option value="{{ drone['drone_id'] }}">{{ drone['drone_name'] }}</option>
+                    {% endfor %}
+                </select>
+
+                <br>
+    	        <!-- Select Car -->
+                <label for="car_id">Select Driver:</label>
+                <select id="car_id" name="car_id" required>
+                    {% for car in cars %}
+                        <option value="{{ car['car_id'] }}">
+                            Driver {{ car['DriverName'] }} - Car ({{ car['car_number'] }}) - ((Entries: {{ car['driverinterview'] }})
+                        </option>
+                    {% endfor %}
+                </select>
+                <br>
+
+
+                <!-- Notes Field -->
+                <label for="notes">Notes:</label><br>
+                <textarea id="notes" name="notes" rows="4" cols="50" placeholder="Enter notes about the footage..." required></textarea>
+                <br>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Entry</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
+

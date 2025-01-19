@@ -1,0 +1,92 @@
+<header>
+    <div class="header-content">
+        <!-- Add the logo image -->
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav>
+            <a href="{{ url_for('index') }}">Mark Cars</a>
+            <a href="{{ url_for('otherentry') }}">Mark Drivers</a>
+            <a href="{{ url_for('admin_page') }}">Admin</a>
+            <!-- <a href="{{ url_for('manage_cars') }}">Manage Cars</a>
+            <a href="{{ url_for('view_entries') }}">View Entries</a>
+            -->
+            <a href="{{ url_for('reset_day') }}">change day</a>
+        </nav>
+    </div>
+</header>
+
+<style>
+    header {
+        background-color: #333;
+        color: white;
+        padding: 15px;
+        width: 100%;
+    }
+
+    .header-content {
+        display: flex;
+        justify-content: flex-start; /* Space between logo and menu */
+        align-items: center;
+    }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo {
+        height: 50px; /* Adjust logo size */
+        width: auto;
+    }
+
+    nav {
+        display: flex;
+        gap: 20px; /* Add space between menu items */
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        font-size: 18px;
+    }
+
+    nav a:hover {
+        background-color: #555;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+        .header-content {
+            flex-direction: column; /* Stack logo and menu vertically on small screens */
+            text-align: center;
+        }
+
+        .logo-container {
+            justify-content: center; /* Center the logo on small screens */
+        }
+
+        .logo {
+            height: 50px; /* Keep logo size consistent */
+        }
+
+        nav {
+            flex-direction: column;
+            width: 100%;
+            padding-top: 10px;
+        }
+
+        nav a {
+            padding: 1px; /* Reduce spacing between menu items */
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            background-color: #666; /* Slightly different hover for mobile */
+        }
+    }
+</style>
+
